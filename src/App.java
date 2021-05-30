@@ -6,6 +6,7 @@ class Player {
     private Weapon weapon;
     private Armor armor;
     // private int maxHealth;
+    
 
     Player(String name) {
         this.name = name;
@@ -32,6 +33,21 @@ class Player {
         this.armor = armor;
         this.health += (this.level * 10) + armor.getMaxDefense();
     }
+
+    public void attack(Player opponent){
+       
+        System.out.println(this.name+" is attacking"+ opponent.name +" with the damage of :" +this.attack+"\n");
+    
+        opponent.getDamage(this.attack);
+    }
+
+    private void getDamage(int damage) {
+        this.health -= damage;
+
+        System.out.println(this.name+" still have :"+ this.health+"\n");
+    }
+
+
 
 }
 
@@ -101,6 +117,17 @@ public class App {
         Armor armor2 =  new Armor("Training Uniform", 10, 100);
         player2.setWeapon(weapon2);
         player2.setArmor(armor2);
+        player2.display();
+
+
+        // episode 1 
+        player1.attack(player2);
+        player1.display();
+        player2.display();
+
+        // episode 2 
+        player2.attack(player1);
+        player1.display();
         player2.display();
     }
 }
